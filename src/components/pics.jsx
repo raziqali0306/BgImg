@@ -1,4 +1,6 @@
 import React, {useEffect, useState} from 'react';
+import Pic from './pic.jsx';
+
 
 function Pics() {
 
@@ -6,10 +8,6 @@ function Pics() {
     useEffect(() => {
         getPics();
     }, [])
-
-    useEffect(() => {
-        console.log(pics);
-    }, [pics])
 
     const getPics = () => {
         let myHeaders = new Headers();
@@ -34,9 +32,10 @@ function Pics() {
         <div className='container bg-light'>
             <div className="row">
                 {pics.map((item, key) => (
-                    <div key={key} className="col-lg-4 col-md-6 col-sm-6 col-6 p-2">
-                        <img className='img-fluid pointer' src={item} alt="https://community.spotify.com/t5/image/serverpage/image-id/106208i2C0401950E6463A4/image-size/medium?v=v2&px=400"  style={{cursor:'pointer'}}/> 
-                    </div>
+                    <Pic 
+                        id={key}
+                        item={item}
+                    />
                 ))}
             </div>
         </div>
