@@ -12,7 +12,6 @@ function Pics() {
     }, [pics])
 
     const getPics = () => {
-        console.log("Hello guys! I'm under the water.")
         let myHeaders = new Headers();
         myHeaders.append('Authorization', '563492ad6f91700001000001183fe298d19746e7b065458c7f79c6b1');
         fetch('https://api.pexels.com/v1/curated?page=1&per_page=54', {
@@ -36,7 +35,7 @@ function Pics() {
             <div className="row">
                 {pics.map((item, key) => (
                     <div key={key} className="col-lg-4 col-md-6 col-sm-6 col-6 p-2">
-                        <img className='img-fluid pointer' src={item} alt="Girl in a jacket"  style={{cursor:'pointer'}}/> 
+                        <img className='img-fluid pointer' src={item} alt="https://community.spotify.com/t5/image/serverpage/image-id/106208i2C0401950E6463A4/image-size/medium?v=v2&px=400"  style={{cursor:'pointer'}}/> 
                     </div>
                 ))}
             </div>

@@ -6,7 +6,7 @@ class Navbar extends Component {
       <div>
         <nav className='navbar sticky-xl-top navbar-dark bg-primary'>
           <div className='container-fluid'>
-            <a href='www.google.com' className='navbar-brand fw-bold fs-1' >BgImg</a>
+            <a href='www.google.com' className='navbar-brand fw-bold fs-1 ms-4' >BgImg</a>
             {/* <form className='d-flex' action='#' method='post'>
               <input
                 className='form-control me-2'
