@@ -15,8 +15,8 @@ class Navbar extends Component {
         </div>
 
         {/* navbar */}
-        <nav className='navbar sticky-top navbar-dark bg-primary rounded-bottom px-5'>
-            <a href='www.google.com' className='navbar-brand fw-bolder fs-2' style={{fontFamily: 'Libre Baskerville'}} >BgImg</a>
+        <nav className='navbar sticky-top navbar-dark bg-primary rounded-bottom px-5 py-3'>
+            <a href='#' className='navbar-brand fw-bolder fs-2' style={{fontFamily: 'Libre Baskerville'}} >BgImg</a>
             <form className='d-flex'>
               <input
                 className='form-control me-2'
