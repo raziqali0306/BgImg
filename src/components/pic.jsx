@@ -10,7 +10,7 @@ function Pic(props) {
             const url =window.URL.createObjectURL(new Blob([res.data]))
             const link = document.createElement('a');
             link.href = url
-            link.setAttribute('download', 'image.png')
+            link.setAttribute('download', 'bgimg.png')
             link.click()
         })
       };
