@@ -45,7 +45,7 @@ function Pics() {
                 </div>
             : 
                 <div>
-                    <div className="row">
+                    <div className="row row-cols-lg-5 row-cols-md-4 row-cols-sm-3 row-cols-3 justify-content-md-center">
                         {pics.map((item, key) => (
                             <Pic 
                                 id={key}
