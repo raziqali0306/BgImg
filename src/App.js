@@ -11,17 +11,38 @@ function App() {
   const [pics, setPics] = useState([]);
   const [page, setpage] = useState(1);
   const [loading, setLoading] = useState(true);
-  const defaultApi =
-    'https://api.pexels.com/v1/curated?page=' + page + '&per_page=54';
-
-  const searchPics = () => {
-    getToast(
-      'Note',
-      'Search option will be available soon!<br/>Thank you for your patience.',
-    );
+  const [query, setQuery] = useState('');
+  const updateQuery = (q) => {
+    setQuery(q);
   };
 
-  const getPics = (url = defaultApi) => {
+  const urls = {
+    default: `https://api.pexels.com/v1/curated?page=${page}&per_page=54`,
+    search: `https://api.pexels.com/v1/search?query=${query}&page=${page}&per_page=56`,
+  };
+
+  const searchPics = (newItems = false) => {
+    if (query !== '' && newItems) {
+      setLoading(true);
+      setPics([]);
+      setpage(1);
+    }
+
+    if (newItems && query === '') {
+      getToast(
+        'Alert',
+        'Enter Tags to search <strong>Eg.: Nature, Cars</strong>',
+      );
+    } else if (newItems && query !== '') {
+      getPics(urls['search'], newItems);
+    } else if (query === '') {
+      getPics();
+    } else {
+      getPics(urls['search'], newItems);
+    }
+  };
+
+  const getPics = (url = urls['default'], newItems = false) => {
     let myHeaders = new Headers();
     myHeaders.append(
       'Authorization',
@@ -34,11 +55,19 @@ function App() {
     })
       .then((res) => res.json())
       .then((json) => {
-        let updatedPics = [...pics];
+        let updatedPics = [];
+        if (!newItems) {
+          updatedPics = [...pics];
+        }
         json['photos'].forEach((element) => {
           updatedPics.push(element['src']['original']);
         });
         setLoading(false);
+        if (updatedPics.length === 0) {
+          getPics(urls['default']);
+          getToast('Info', `We Couldn\'t Find Anything For \"${query}\"`);
+          setQuery('');
+        }
         setPics(updatedPics);
       })
       .catch((error) => {
@@ -72,16 +101,21 @@ function App() {
   };
 
   useEffect(() => {
-    getPics();
+    searchPics();
   }, []);
 
   return (
     <div>
-      <Navbar searchPics={searchPics} getToast={getToast} />
+      <Navbar
+        query={query}
+        updateQuery={updateQuery}
+        searchPics={searchPics}
+        getToast={getToast}
+      />
       <Pics
         pics={pics}
         loading={loading}
-        getPics={getPics}
+        searchPics={searchPics}
         download={download}
       />
       <ToastPopUp />

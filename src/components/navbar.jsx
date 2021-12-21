@@ -3,22 +3,9 @@ import { useEffect } from 'react';
 
 function Navbar(props) {
 
-  const [query, setQuery] = useState('');
-  
-  const queryValidation = () => {
-    if(query === "") {
-      props.getToast("Alert", "Enter Tags to search <strong>Eg.: Nature, Cars</strong>")
-    }
-    else {
-      setQuery('');
-      props.searchPics(query);
-    }
-  }
-
   useEffect(() => {
     props.getToast("Welcome!", "Thanks for choosing this website. Hope, you find some cool wallpapers here.!")
-  }, [])
-
+  }, []);
   
   return (
     <div>
@@ -31,10 +18,10 @@ function Navbar(props) {
               type='text'
               placeholder='Search'
               aria-label='Search'
-              value={query}
-              onChange={(e) => (setQuery(e.target.value))}
+              value={props.query}
+              onChange={(e) => {props.updateQuery(e.target.value)}}
             />
-            <button type="button" className="btn btn-danger" id="liveToastBtn" onClick={() => (queryValidation())}>Search</button>
+            <button type="button" className="btn btn-danger" id="liveToastBtn" onClick={() => {props.searchPics(true)}}>Search</button>
           </form>
       </nav>
     </div>
