@@ -65,7 +65,7 @@ function App() {
         setLoading(false);
         if (updatedPics.length === 0) {
           getPics(urls['default']);
-          getToast('Info', `We Couldn\'t Find Anything For \"${query}\"`);
+          getToast('Info', `We Couldn't Find Anything For "${query}"`);
           setQuery('');
         }
         setPics(updatedPics);
