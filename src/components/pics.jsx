@@ -23,8 +23,9 @@ function Pics(props) {
                             />
                         ))}
                     </div>
-                    <div className="d-grid gap-2 col-xl-2 col-lg-2 col-md-2 col-sm-3 col-4 py-5 mx-auto">
-                        <button className="btn btn-outline-primary p-2" type="button" onClick={() => {props.getPics()}}>Load more</button>
+                    <div className="d-grid gap-2 col-xl-2 col-lg-2 col-md-2 col-sm-3 col-4 my-5 mx-auto"> 
+                    {/* col-xl-2 col-lg-2 col-md-2 col-sm-3 col-4 */}
+                        <button className="btn btn-outline-primary" type="button" onClick={() => {props.getPics()}}>Load more</button>
                     </div>
                 </div>
             }

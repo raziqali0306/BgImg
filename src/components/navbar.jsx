@@ -1,48 +1,45 @@
-import React, { Component } from 'react';
-import { Toast } from 'bootstrap';
-import ToastPopUp from './toast.jsx';
+import React, { useState } from 'react';
+import { useEffect } from 'react';
 
-class Navbar extends Component {
+function Navbar(props) {
+
+  const [query, setQuery] = useState('');
   
-  render() {
-    return (
-      <div>
-        {/* Welcome Note */}
-        <div className='alert alert-info mb-0 text-center' role='alert'>
-          Welcome! Thanks for choosing this website. Hope, you find some cool wallpapers
-          here.!
-        </div>
-
-        {/* navbar */}
-        <nav className='navbar sticky-top navbar-dark bg-primary rounded-bottom px-5 py-3'>
-            <a href='bgimg.netlify.app' className='navbar-brand fw-bolder fs-2' style={{fontFamily: 'Libre Baskerville'}} >BgImg</a>
-            <form className='d-flex'>
-              <input
-                className='form-control me-2'
-                type='search'
-                placeholder='Search'
-                aria-label='Search'
-              />
-              {/* <button className='btn btn-danger' type='button' onClick={this.getToast}>
-                Search
-              </button> */}
-              <button type="button" className="btn btn-danger" id="liveToastBtn" onClick={() => (this.getToast())}>Search</button>
-
-            </form>
-        </nav>
-        <ToastPopUp 
-          body={"Searching option will be available soon.! Thanks for your patience."}
-        />
-        
-      </div>
-    );
+  const queryValidation = () => {
+    if(query === "") {
+      props.getToast("Alert", "Enter Tags to search <strong>Eg.: Nature, Cars</strong>")
+    }
+    else {
+      setQuery('');
+      props.searchPics(query);
+    }
   }
 
-  getToast = () => {
-    var toastLiveExample = document.getElementById('liveToast');
-    var toast = new Toast(toastLiveExample);
-    toast.show();
-  };
+  useEffect(() => {
+    props.getToast("Welcome!", "Thanks for choosing this website. Hope, you find some cool wallpapers here.!")
+  }, [])
+
+  
+  return (
+    <div>
+      {/* navbar */}
+      <nav className='navbar sticky-top navbar-dark bg-primary rounded-bottom px-5 py-3'>
+          <a href='bgimg.netlify.app' className='navbar-brand fw-bolder fs-2' style={{fontFamily: 'Libre Baskerville'}} >BgImg</a>
+          <form className='d-flex' onSubmit={(event) => {event.preventDefault()}}>
+            <input
+              className='form-control me-2'
+              type='text'
+              placeholder='Search'
+              aria-label='Search'
+              value={query}
+              onChange={(e) => (setQuery(e.target.value))}
+            />
+            <button type="button" className="btn btn-danger" id="liveToastBtn" onClick={() => (queryValidation())}>Search</button>
+          </form>
+      </nav>
+    </div>
+  );
+
 };
 
 export default Navbar;
