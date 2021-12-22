@@ -5,7 +5,7 @@ import "react-activity/dist/Sentry.css";
 
 function Pics(props) {
     return ( 
-        <div className='container bg-light'>
+        <div className='container bg-light mt-3'>
             {props.loading ? 
                 <div className="start-50 top-50 position-absolute translate-middle">
                     <Sentry
@@ -13,7 +13,7 @@ function Pics(props) {
                     color='blue' />
                 </div>
             : 
-                <div>
+                <div className='pics'>
                     <div className="row row-cols-lg-5 row-cols-md-4 row-cols-sm-3 row-cols-3 justify-content-md-center">
                         {props.pics.map((item, key) => (
                             <Pic 
@@ -23,8 +23,9 @@ function Pics(props) {
                             />
                         ))}
                     </div>
-                    <div className="d-grid gap-2 col-xl-2 col-lg-2 col-md-2 col-sm-3 col-4 py-5 mx-auto">
-                        <button className="btn btn-outline-primary p-2" type="button" onClick={() => {props.getPics()}}>Load more</button>
+                    <div className="d-grid gap-2 col-xl-2 col-lg-2 col-md-2 col-sm-3 col-4 my-5 mx-auto"> 
+                    {/* col-xl-2 col-lg-2 col-md-2 col-sm-3 col-4 */}
+                        <button className="btn btn-outline-primary" type="button" onClick={() => {props.searchPics()}}>Load more</button>
                     </div>
                 </div>
             }
