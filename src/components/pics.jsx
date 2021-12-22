@@ -5,7 +5,7 @@ import "react-activity/dist/Sentry.css";
 
 function Pics(props) {
     return ( 
-        <div className='container bg-light mt-3'>
+        <div className='container bg-light pt-3'>
             {props.loading ? 
                 <div className="start-50 top-50 position-absolute translate-middle">
                     <Sentry
@@ -15,9 +15,9 @@ function Pics(props) {
             : 
                 <div className='pics'>
                     <div className="row row-cols-lg-5 row-cols-md-4 row-cols-sm-3 row-cols-3 justify-content-md-center">
-                        {props.pics.map((item, key) => (
+                        {props.pics.map((item, index) => (
                             <Pic 
-                                key={key}
+                                key={index}
                                 item={item}
                                 download={props.download}
                             />

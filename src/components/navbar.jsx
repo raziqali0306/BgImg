@@ -11,7 +11,7 @@ function Navbar(props) {
     <div>
       {/* navbar */}
       <nav className='navbar sticky-top navbar-dark bg-primary rounded-bottom px-5 py-3'>
-          <a href='bgimg.netlify.app' className='navbar-brand fw-bolder fs-2' style={{fontFamily: 'Libre Baskerville'}} >BgImg</a>
+          <a href='https://bgimg.netlify.app/' className='navbar-brand fw-bolder fs-2' style={{fontFamily: 'Libre Baskerville'}} target={'_blank'} rel="noreferrer">BgImg</a>
           <form className='d-flex' onSubmit={(event) => {event.preventDefault()}}>
             <input
               className='form-control me-2'
