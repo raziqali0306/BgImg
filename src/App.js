@@ -56,7 +56,6 @@ function App() {
     setpage(page + 1);
     if (orientation !== 'Orientation' && orientation !== 'All') {
       url += `&orientation=${orientation.toLowerCase()}`;
-      console.log(url);
     }
 
     fetch(url, {
