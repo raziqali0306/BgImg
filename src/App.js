@@ -2,7 +2,6 @@ import './App.css';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Toast } from 'bootstrap';
-
 import ToastPopUp from './components/toast.jsx';
 import Navbar from './components/navbar.jsx';
 import Pics from './components/pics.jsx';
@@ -11,9 +10,15 @@ function App() {
   const [pics, setPics] = useState([]);
   const [page, setpage] = useState(1);
   const [loading, setLoading] = useState(true);
+
   const [query, setQuery] = useState('');
   const updateQuery = (q) => {
     setQuery(q);
+  };
+
+  const [orientation, setOrientation] = useState('Orientation');
+  const updateOrientation = (q) => {
+    setOrientation(q);
   };
 
   const urls = {
@@ -49,6 +54,11 @@ function App() {
       '563492ad6f91700001000001183fe298d19746e7b065458c7f79c6b1',
     );
     setpage(page + 1);
+    if (orientation !== 'Orientation' && orientation !== 'All') {
+      url += `&orientation=${orientation.toLowerCase()}`;
+      console.log(url);
+    }
+
     fetch(url, {
       method: 'GET',
       headers: myHeaders,
@@ -108,16 +118,20 @@ function App() {
     <div>
       <Navbar
         query={query}
+        orientation={orientation}
         updateQuery={updateQuery}
         searchPics={searchPics}
         getToast={getToast}
+        updateOrientation={updateOrientation}
       />
-      <Pics
-        pics={pics}
-        loading={loading}
-        searchPics={searchPics}
-        download={download}
-      />
+      <div className='container'>
+        <Pics
+          pics={pics}
+          loading={loading}
+          searchPics={searchPics}
+          download={download}
+        />
+      </div>
       <ToastPopUp />
     </div>
   );

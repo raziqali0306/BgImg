@@ -5,7 +5,8 @@ import "react-activity/dist/Sentry.css";
 
 function Pics(props) {
     return ( 
-        <div className='container bg-light pt-3'>
+        // <div className='container bg-light pt-3 mb-0'>
+        <div className='pt-3'>
             {props.loading ? 
                 <div className="start-50 top-50 position-absolute translate-middle">
                     <Sentry
